@@ -66,8 +66,8 @@ db.open("DRIVER={MonetDB};Server=localhost;Port=50000;UID=monetdb;PWD=monetdb;DA
     	console.log("--------")
     	console.log(moreResultSets)
     	console.log("--------")
-        console.log(rows);
-        console.log("--------")
+        // console.log(rows);
+        // console.log("--------")
         db.close(function(){});
     });
 });
