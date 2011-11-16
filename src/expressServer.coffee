@@ -8,6 +8,7 @@ module.exports = class ExpressServ
   constructor: (@host, @port) ->
     @app = require('express').createServer();
     @db = @db || new odbc.Database()
+    curr = this
     @db.open "DRIVER={MonetDB};Server=localhost;Port=50000;UID=monetdb;PWD=monetdb;DATABASE=my-first-db", (err) ->
       curr.set_routes()  
     @app.listen(@port, @host)
