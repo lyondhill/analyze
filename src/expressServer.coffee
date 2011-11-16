@@ -15,9 +15,10 @@ module.exports = class ExpressServ
   console.log "1"
 
   establish_db: () ->
+    curr = this
     @db = @db || new odbc.Database()
     @db.open "DRIVER={MonetDB};Server=localhost;Port=50000;UID=monetdb;PWD=monetdb;DATABASE=my-first-db", (err) ->
-      @set_routes()  
+      curr.set_routes()  
 
   set_routes: () ->
     @app.get "/", @hello_world
