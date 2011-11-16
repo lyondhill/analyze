@@ -18,6 +18,7 @@ module.exports = class ExpressServ
   set_routes: () ->
     @app.get "/", @hello_world
     @app.get "/apps/:app", @app_name
+    @app.get "/average", @average
 
   hello_world: (req, res) ->
     res.send "hello BIG world"
