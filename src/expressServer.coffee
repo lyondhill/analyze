@@ -27,10 +27,9 @@ module.exports = class ExpressServ
     res.send "app name = #{req.params.app}"
 
   average: (req, res) ->
+    @db = @db || new odbc.Database()
     @db.open "DRIVER={MonetDB};Server=localhost;Port=50000;UID=monetdb;PWD=monetdb;DATABASE=my-first-db", (err) ->
       @db.query "SELECT sum(severity) as sum, avg(severity) as average FROM lyon_farts", (err, rows, moreResultSets) ->
         res.send "average: #{rows[0].average}"
 
   
-
-
