@@ -21,14 +21,52 @@ db.open("DRIVER={MonetDB};Server=localhost;Port=50000;UID=monetdb;PWD=monetdb;DA
     // });
 	db.query("SELECT sum(severity) as sum, avg(severity) as average FROM lyon_farts", function(err, rows, moreResultSets)
 	{
-		console.log(rows.length)
-		console.log("--------")
-		console.log(moreResultSets)
-		console.log("--------")
 	    console.log(rows);
-	    console.log("--------")
+	});
+	console.log('1')
+	db.query("SELECT sum(severity) as sum, avg(severity) as average FROM lyon_farts", function(err, rows, moreResultSets)
+	{
+	    console.log(rows);
+	});
+	console.log('2')
+	db.query("SELECT sum(severity) as sum, avg(severity) as average FROM lyon_farts", function(err, rows, moreResultSets)
+	{
+	    console.log(rows);
+	});
+	console.log('3')
+	db.query("SELECT sum(severity) as sum, avg(severity) as average FROM lyon_farts", function(err, rows, moreResultSets)
+	{
+	    console.log(rows);
+	});
+	console.log('4')
+
+	db.query("SELECT sum(severity) as sum, avg(severity) as average FROM lyon_farts", function(err, rows, moreResultSets)
+	{
+	    console.log(rows);
+	});
+	console.log('5')
+	db.query("SELECT sum(severity) as sum, avg(severity) as average FROM lyon_farts", function(err, rows, moreResultSets)
+	{
+	    console.log(rows);
+	});
+	console.log('6')
+	db.query("SELECT sum(severity) as sum, avg(severity) as average FROM lyon_farts", function(err, rows, moreResultSets)
+	{
+	    console.log(rows);
+	});
+	console.log('7')
+	db.query("SELECT sum(severity) as sum, avg(severity) as average FROM lyon_farts", function(err, rows, moreResultSets)
+	{
+	    console.log(rows);
+	});
+	console.log('8')
+	db.query("SELECT sum(severity) as sum, avg(severity) as average FROM lyon_farts", function(err, rows, moreResultSets)
+	{
+	    console.log(rows);
 	    db.close(function(){});
 	});
+
+
 
 
 });
