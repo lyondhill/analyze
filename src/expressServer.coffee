@@ -8,8 +8,8 @@ module.exports = class ExpressServ
   constructor: (@host, @port) ->
     @app = require('express').createServer();
     @set_routes()
-    @app.listen(@port, @host)
     @db = new odbc.Database()
+    @app.listen(@port, @host)
     # @db.open "DRIVER={MonetDB};Server=localhost;Port=50000;UID=monetdb;PWD=monetdb;DATABASE=my-first-db", (err) ->
     # @db.query "SELECT sum(severity) as sum, avg(severity) as average FROM lyon_farts", (err, rows, moreResultSets) ->
 
