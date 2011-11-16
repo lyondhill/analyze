@@ -1,7 +1,7 @@
 {
   "author": "Lyon Hill <lyondhill@gmail.com>",
-  "name": "monetdb",
-  "description": "monetdb client adaptor",
+  "name": "analytics",
+  "description": "pagodabox analytics query thing",
   "version": "0.0.1",
   "repository": {
     "type": "git",

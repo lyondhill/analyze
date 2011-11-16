@@ -1,0 +1,454 @@
+info it worked if it ends with ok
+verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'odbc' ]
+info using npm@1.0.93
+info using node@v0.4.12
+verbose /usr/local/bin/node node symlink
+verbose config file /Users/lyon/.npmrc
+verbose config file /usr/local/etc/npmrc
+silly testEngine { author: { name: 'Lyon Hill', email: 'lyondhill@gmail.com' },
+silly testEngine   name: 'analytics',
+silly testEngine   description: 'pagodabox analytics query thing',
+silly testEngine   version: '0.0.1',
+silly testEngine   repository: 
+silly testEngine    { type: 'git',
+silly testEngine      url: 'git@github.com:lyondhill/monetDB-node-client.git' },
+silly testEngine   engines: { node: '0.4' },
+silly testEngine   main: './lib/pubsub.js',
+silly testEngine   dependencies: {},
+silly testEngine   devDependencies: { nodeunit: '>= 0.5.0' },
+silly testEngine   _id: 'analytics@0.0.1',
+silly testEngine   _engineSupported: true,
+silly testEngine   _npmVersion: '1.0.93',
+silly testEngine   _nodeVersion: 'v0.4.12',
+silly testEngine   _defaultsLoaded: true }
+verbose caching /Users/lyon/src/monet-node/package.json
+verbose loadDefaults analytics@0.0.1
+silly testEngine { name: 'express',
+silly testEngine   description: 'Sinatra inspired web development framework',
+silly testEngine   version: '2.5.0',
+silly testEngine   author: 
+silly testEngine    { name: 'TJ Holowaychuk',
+silly testEngine      email: 'tj@vision-media.ca' },
+silly testEngine   contributors: 
+silly testEngine    [ { name: 'TJ Holowaychuk',
+silly testEngine        email: 'tj@vision-media.ca' },
+silly testEngine      { name: 'Aaron Heckmann',
+silly testEngine        email: 'aaron.heckmann+github@gmail.com' },
+silly testEngine      { name: 'Ciaran Jessup', email: 'ciaranj@gmail.com' },
+silly testEngine      { name: 'Guillermo Rauch', email: 'rauchg@gmail.com' } ],
+silly testEngine   dependencies: 
+silly testEngine    { connect: '1.7.x',
+silly testEngine      mime: '>= 0.0.1',
+silly testEngine      qs: '>= 0.3.1',
+silly testEngine      mkdirp: '0.0.7' },
+silly testEngine   devDependencies: 
+silly testEngine    { 'connect-form': '0.2.1',
+silly testEngine      ejs: '0.4.2',
+silly testEngine      expresso: '0.9.2',
+silly testEngine      hamljs: '0.5.1',
+silly testEngine      jade: '0.16.2',
+silly testEngine      stylus: '0.13.0',
+silly testEngine      should: '0.3.2',
+silly testEngine      'express-messages': '0.0.2',
+silly testEngine      'node-markdown': '>= 0.0.1',
+silly testEngine      'connect-redis': '>= 0.0.1' },
+silly testEngine   keywords: [ 'framework', 'sinatra', 'web', 'rest', 'restful' ],
+silly testEngine   repository: 
+silly testEngine    { type: 'git',
+silly testEngine      url: 'git://github.com/visionmedia/express.git' },
+silly testEngine   main: 'index',
+silly testEngine   bin: { express: './bin/express' },
+silly testEngine   scripts: { test: 'make test', prepublish: 'npm prune' },
+silly testEngine   engines: { node: '>= 0.4.1 < 0.7.0' },
+silly testEngine   _id: 'express@2.5.0',
+silly testEngine   _engineSupported: true,
+silly testEngine   _npmVersion: '1.0.93',
+silly testEngine   _nodeVersion: 'v0.4.12',
+silly testEngine   _defaultsLoaded: true }
+verbose caching /Users/lyon/src/monet-node/node_modules/express/package.json
+verbose loadDefaults express@2.5.0
+verbose has wscript [ undefined,
+verbose has wscript   { file: '/Users/lyon/src/monet-node/node_modules/daemon/package.json',
+verbose has wscript     contributors: false,
+verbose has wscript     serverjs: false,
+verbose has wscript     wscript: true } ]
+silly testEngine { name: 'daemon',
+silly testEngine   version: '0.4.0',
+silly testEngine   description: 'Add-on for creating *nix daemons',
+silly testEngine   author: 
+silly testEngine    { name: 'Arthur',
+silly testEngine      email: 'arthur@norgic.com',
+silly testEngine      url: 'Slashed' },
+silly testEngine   contributors: 
+silly testEngine    [ { name: 'Pedro Teixeira',
+silly testEngine        email: 'pedro.teixeira@gmail.com' },
+silly testEngine      { name: 'Charlie Robbins',
+silly testEngine        email: 'charlie.robbins@gmail.com' },
+silly testEngine      { name: 'James Halliday', email: 'mail@substack.net' },
+silly testEngine      { name: 'Zak Taylor', email: 'zak@dobl.com' },
+silly testEngine      { name: 'Daniel Bartlett', email: 'dan@f-box.org' } ],
+silly testEngine   repository: 
+silly testEngine    { type: 'git',
+silly testEngine      url: 'git://github.com/indexzero/daemon.node.git' },
+silly testEngine   devDependencies: { vows: '0.5.x' },
+silly testEngine   main: './lib/daemon',
+silly testEngine   scripts: { preinstall: 'node-waf configure build' },
+silly testEngine   engines: { node: '>= 0.4.0' },
+silly testEngine   _id: 'daemon@0.4.0',
+silly testEngine   dependencies: {},
+silly testEngine   _engineSupported: true,
+silly testEngine   _npmVersion: '1.0.93',
+silly testEngine   _nodeVersion: 'v0.4.12',
+silly testEngine   _defaultsLoaded: true }
+verbose caching /Users/lyon/src/monet-node/node_modules/daemon/package.json
+verbose loadDefaults daemon@0.4.0
+silly testEngine { name: 'optimist',
+silly testEngine   version: '0.2.8',
+silly testEngine   description: 'Light-weight option parsing with an argv hash. No optstrings attached.',
+silly testEngine   main: './index.js',
+silly testEngine   directories: { lib: '.', test: 'test', example: 'examples' },
+silly testEngine   dependencies: { wordwrap: '>=0.0.1 <0.1.0' },
+silly testEngine   devDependencies: { hashish: '0.0.x', expresso: '0.7.x' },
+silly testEngine   scripts: { test: 'expresso' },
+silly testEngine   repository: 
+silly testEngine    { type: 'git',
+silly testEngine      url: 'git://github.com/substack/node-optimist.git' },
+silly testEngine   keywords: 
+silly testEngine    [ 'argument',
+silly testEngine      'args',
+silly testEngine      'option',
+silly testEngine      'parser',
+silly testEngine      'parsing',
+silly testEngine      'cli',
+silly testEngine      'command' ],
+silly testEngine   author: 
+silly testEngine    { name: 'James Halliday',
+silly testEngine      email: 'mail@substack.net',
+silly testEngine      url: 'http://substack.net' },
+silly testEngine   license: 'MIT/X11',
+silly testEngine   engine: { node: '>=0.4' },
+silly testEngine   _id: 'optimist@0.2.8',
+silly testEngine   engines: { node: '*' },
+silly testEngine   _engineSupported: true,
+silly testEngine   _npmVersion: '1.0.93',
+silly testEngine   _nodeVersion: 'v0.4.12',
+silly testEngine   _defaultsLoaded: true }
+verbose caching /Users/lyon/src/monet-node/node_modules/optimist/package.json
+verbose loadDefaults optimist@0.2.8
+verbose from cache /Users/lyon/src/monet-node/package.json
+verbose into /Users/lyon/src/monet-node [ 'odbc' ]
+verbose cache add odbc
+verbose cache add [ 'odbc', null ]
+silly cache add: name, spec, args [ undefined, 'odbc', [ 'odbc', null ] ]
+verbose parsed url { pathname: 'odbc', href: 'odbc' }
+info addNamed [ 'odbc', '' ]
+verbose addNamed [ null, '' ]
+verbose GET odbc
+verbose raw, before any munging odbc
+verbose url resolving [ 'https://registry.npmjs.org/', './odbc' ]
+verbose url resolved https://registry.npmjs.org/odbc
+silly get cb [ 200,
+silly get cb   { vary: 'Accept',
+silly get cb     server: 'CouchDB/1.1.0 (Erlang OTP/R14B04)',
+silly get cb     etag: '"7RIMO4WLWUIZO41L6K55MC8M5"',
+silly get cb     date: 'Wed, 16 Nov 2011 21:45:18 GMT',
+silly get cb     'content-type': 'application/json',
+silly get cb     'content-length': '1842' } ]
+verbose mkdir (expected) error ENOENT, No such file or directory '/Users/lyon/.npm/odbc'
+verbose mkdir done: /Users/lyon/.npm/odbc 755
+verbose GET odbc/0.3.0
+verbose raw, before any munging odbc/0.3.0
+verbose url resolving [ 'https://registry.npmjs.org/', './odbc/0.3.0' ]
+verbose url resolved https://registry.npmjs.org/odbc/0.3.0
+silly get cb [ 200,
+silly get cb   { vary: 'Accept',
+silly get cb     server: 'CouchDB/1.1.0 (Erlang OTP/R14B04)',
+silly get cb     etag: '"7RIMO4WLWUIZO41L6K55MC8M5"',
+silly get cb     date: 'Wed, 16 Nov 2011 21:45:19 GMT',
+silly get cb     'content-type': 'application/json',
+silly get cb     'content-length': '743' } ]
+verbose mkdir (expected) error ENOENT, No such file or directory '/Users/lyon/.npm/odbc/0.3.0'
+verbose mkdir done: /Users/lyon/.npm/odbc/0.3.0 755
+verbose bin dist [ '0.4-ares1.7.4-ev4.4-openssl0.9.8l-v83.1.8.26-darwin-10.8.0',
+verbose bin dist   { shasum: '537d93311114b784f81192fca1fa50038f441609',
+verbose bin dist     tarball: 'http://registry.npmjs.org/odbc/-/odbc-0.3.0.tgz' } ]
+verbose addRemoteTarball [ 'https://registry.npmjs.org/odbc/-/odbc-0.3.0.tgz',
+verbose addRemoteTarball   '537d93311114b784f81192fca1fa50038f441609' ]
+verbose mkdir (expected) error ENOENT, No such file or directory '/var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442'
+verbose mkdir (expected) error ENOENT, No such file or directory '/var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114'
+verbose mkdir done: /var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114 755
+info fetch https://registry.npmjs.org/odbc/-/odbc-0.3.0.tgz
+verbose fetch to /var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114/tmp.tgz
+silly updated sha bytes 12052
+info shasum 537d93311114b784f81192fca1fa50038f441609
+info shasum /var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114/tmp.tgz
+verbose mkdir (expected) error ENOENT, No such file or directory '/var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114/contents'
+verbose mkdir (expected) error ENOENT, No such file or directory '/var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114/contents/___package.npm'
+verbose mkdir done: /var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114/contents/___package.npm 755
+verbose unpack_ uid, gid [ undefined, undefined ]
+verbose unpackTarget /var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114/contents/package
+silly gunzTarPerm modes [ '755', '644' ]
+silly tar err x package/wscript
+silly tar err x package/odbc.js
+silly tar err x package/LICENSE
+silly tar err x package/build.sh
+silly tar err x package/README.md
+silly tar err x package/package.json
+silly tar err x package/index.js
+silly tar err x package/odbc_bindings.node
+silly tar err x package/src/Database.cpp
+silly tar err x package/src/Database.h
+silly tar err x package/examples/params.js
+silly tar err x package/examples/describe.js
+silly asyncMap in gTP /var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114/contents/___package.npm/package
+silly asyncMap in gTP /var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114/contents/___package.npm/package/build.sh
+silly asyncMap in gTP /var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114/contents/___package.npm/package/index.js
+silly asyncMap in gTP /var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114/contents/___package.npm/package/LICENSE
+silly asyncMap in gTP /var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114/contents/___package.npm/package/odbc.js
+silly asyncMap in gTP /var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114/contents/___package.npm/package/odbc_bindings.node
+silly asyncMap in gTP /var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114/contents/___package.npm/package/package.json
+silly asyncMap in gTP /var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114/contents/___package.npm/package/README.md
+silly asyncMap in gTP /var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114/contents/___package.npm/package/wscript
+silly asyncMap in gTP /var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114/contents/___package.npm/package/examples
+silly asyncMap in gTP /var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114/contents/___package.npm/package/examples/describe.js
+silly asyncMap in gTP /var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114/contents/___package.npm/package/examples/params.js
+silly asyncMap in gTP /var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114/contents/___package.npm/package/src
+silly asyncMap in gTP /var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114/contents/___package.npm/package/src/Database.cpp
+silly asyncMap in gTP /var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114/contents/___package.npm/package/src/Database.h
+verbose gunzed /var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114/contents/___package.npm/package
+verbose rm'ed /var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114/contents/package
+verbose renamed [ '/var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114/contents/___package.npm/package',
+verbose renamed   '/var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114/contents/package' ]
+verbose has wscript [ undefined,
+verbose has wscript   { file: '/var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114/contents/package/package.json',
+verbose has wscript     contributors: false,
+verbose has wscript     serverjs: false,
+verbose has wscript     wscript: true } ]
+silly testEngine { name: 'odbc',
+silly testEngine   description: 'unixodbc bindings for node',
+silly testEngine   version: '0.3.0',
+silly testEngine   homepage: 'http://github.com/w1nk/node-odbc/',
+silly testEngine   repository: 
+silly testEngine    { type: 'git',
+silly testEngine      url: 'git://github.com/w1nk/node-odbc.git' },
+silly testEngine   author: { name: 'Lee Smith', email: 'notwink@gmail.com' },
+silly testEngine   directories: { lib: '.' },
+silly testEngine   engines: { node: '*' },
+silly testEngine   scripts: { preinstall: 'node-waf configure build' },
+silly testEngine   _id: 'odbc@0.3.0',
+silly testEngine   dependencies: {},
+silly testEngine   devDependencies: {},
+silly testEngine   _engineSupported: true,
+silly testEngine   _npmVersion: '1.0.93',
+silly testEngine   _nodeVersion: 'v0.4.12',
+silly testEngine   _defaultsLoaded: true,
+silly testEngine   path: '/var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114/contents/package' }
+verbose caching /var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114/contents/package/package.json
+verbose loadDefaults odbc@0.3.0
+verbose tarball contents [ 'package' ]
+verbose from cache /var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114/contents/package/package.json
+verbose pack /var/folders/jP/jP0zDyF9HyWgLWbByRdOZ++++TM/-Tmp-/npm-1321479919442/1321479919442-0.8945185211487114/contents/package /Users/lyon/.npm/odbc/0.3.0/package.tgz
+verbose mkdir'ed /Users/lyon/.npm/odbc/0.3.0
+verbose tar about to write tar and gzip it.
+silly tar args [ '-czvf',
+silly tar args   '-',
+silly tar args   'package/build.sh',
+silly tar args   'package/index.js',
+silly tar args   'package/LICENSE',
+silly tar args   'package/odbc.js',
+silly tar args   'package/package.json',
+silly tar args   'package/README.md',
+silly tar args   'package/wscript',
+silly tar args   'package/odbc_bindings.node',
+silly tar args   'package/examples/describe.js',
+silly tar args   'package/examples/params.js',
+silly tar args   'package/src/Database.cpp',
+silly tar args   'package/src/Database.h' ]
+verbose mkdir (expected) error ENOENT, No such file or directory '/Users/lyon/.npm/odbc/0.3.0/___package.npm'
+verbose mkdir done: /Users/lyon/.npm/odbc/0.3.0/___package.npm 755
+verbose unpack_ uid, gid [ undefined, undefined ]
+verbose unpackTarget /Users/lyon/.npm/odbc/0.3.0/package
+silly gunzTarPerm modes [ '755', '644' ]
+silly tar err x package/build.sh
+silly tar err x package/index.js
+silly tar err x package/LICENSE
+silly tar err x package/odbc.js
+silly tar err x package/package.json
+silly tar err x package/README.md
+silly tar err x package/wscript
+silly tar err x package/odbc_bindings.node
+silly tar err x package/examples/describe.js
+silly tar err x package/examples/params.js
+silly tar err x package/src/Database.cpp
+silly tar err x package/src/Database.h
+silly asyncMap in gTP /Users/lyon/.npm/odbc/0.3.0/___package.npm/package
+silly asyncMap in gTP /Users/lyon/.npm/odbc/0.3.0/___package.npm/package/build.sh
+silly asyncMap in gTP /Users/lyon/.npm/odbc/0.3.0/___package.npm/package/index.js
+silly asyncMap in gTP /Users/lyon/.npm/odbc/0.3.0/___package.npm/package/LICENSE
+silly asyncMap in gTP /Users/lyon/.npm/odbc/0.3.0/___package.npm/package/odbc.js
+silly asyncMap in gTP /Users/lyon/.npm/odbc/0.3.0/___package.npm/package/odbc_bindings.node
+silly asyncMap in gTP /Users/lyon/.npm/odbc/0.3.0/___package.npm/package/package.json
+silly asyncMap in gTP /Users/lyon/.npm/odbc/0.3.0/___package.npm/package/README.md
+silly asyncMap in gTP /Users/lyon/.npm/odbc/0.3.0/___package.npm/package/wscript
+silly asyncMap in gTP /Users/lyon/.npm/odbc/0.3.0/___package.npm/package/examples
+silly asyncMap in gTP /Users/lyon/.npm/odbc/0.3.0/___package.npm/package/examples/describe.js
+silly asyncMap in gTP /Users/lyon/.npm/odbc/0.3.0/___package.npm/package/examples/params.js
+silly asyncMap in gTP /Users/lyon/.npm/odbc/0.3.0/___package.npm/package/src
+silly asyncMap in gTP /Users/lyon/.npm/odbc/0.3.0/___package.npm/package/src/Database.cpp
+silly asyncMap in gTP /Users/lyon/.npm/odbc/0.3.0/___package.npm/package/src/Database.h
+verbose gunzed /Users/lyon/.npm/odbc/0.3.0/___package.npm/package
+verbose rm'ed /Users/lyon/.npm/odbc/0.3.0/package
+verbose renamed [ '/Users/lyon/.npm/odbc/0.3.0/___package.npm/package',
+verbose renamed   '/Users/lyon/.npm/odbc/0.3.0/package' ]
+verbose has wscript [ undefined,
+verbose has wscript   { file: '/Users/lyon/.npm/odbc/0.3.0/package/package.json',
+verbose has wscript     contributors: false,
+verbose has wscript     serverjs: false,
+verbose has wscript     wscript: true } ]
+silly testEngine { name: 'odbc',
+silly testEngine   description: 'unixodbc bindings for node',
+silly testEngine   version: '0.3.0',
+silly testEngine   homepage: 'http://github.com/w1nk/node-odbc/',
+silly testEngine   repository: 
+silly testEngine    { type: 'git',
+silly testEngine      url: 'git://github.com/w1nk/node-odbc.git' },
+silly testEngine   author: { name: 'Lee Smith', email: 'notwink@gmail.com' },
+silly testEngine   directories: { lib: '.' },
+silly testEngine   engines: { node: '*' },
+silly testEngine   scripts: { preinstall: 'node-waf configure build' },
+silly testEngine   _id: 'odbc@0.3.0',
+silly testEngine   dependencies: {},
+silly testEngine   devDependencies: {},
+silly testEngine   _engineSupported: true,
+silly testEngine   _npmVersion: '1.0.93',
+silly testEngine   _nodeVersion: 'v0.4.12',
+silly testEngine   _defaultsLoaded: true,
+silly testEngine   dist: { shasum: 'e72cf8372a10156aea34828f562950c27b8aaefa' } }
+verbose caching /Users/lyon/.npm/odbc/0.3.0/package/package.json
+verbose loadDefaults odbc@0.3.0
+silly updated sha bytes 20480
+info shasum e72cf8372a10156aea34828f562950c27b8aaefa
+info shasum /Users/lyon/.npm/odbc/0.3.0/package.tgz
+verbose from cache /Users/lyon/.npm/odbc/0.3.0/package/package.json
+verbose chmod /Users/lyon/.npm/odbc/0.3.0/package.tgz 644
+silly resolved [ { name: 'odbc',
+silly resolved     description: 'unixodbc bindings for node',
+silly resolved     version: '0.3.0',
+silly resolved     homepage: 'http://github.com/w1nk/node-odbc/',
+silly resolved     repository: 
+silly resolved      { type: 'git',
+silly resolved        url: 'git://github.com/w1nk/node-odbc.git' },
+silly resolved     author: { name: 'Lee Smith', email: 'notwink@gmail.com' },
+silly resolved     directories: { lib: '.' },
+silly resolved     engines: { node: '*' },
+silly resolved     scripts: { preinstall: 'node-waf configure build' },
+silly resolved     _id: 'odbc@0.3.0',
+silly resolved     dependencies: {},
+silly resolved     devDependencies: {},
+silly resolved     _engineSupported: true,
+silly resolved     _npmVersion: '1.0.93',
+silly resolved     _nodeVersion: 'v0.4.12',
+silly resolved     _defaultsLoaded: true,
+silly resolved     dist: { shasum: 'e72cf8372a10156aea34828f562950c27b8aaefa' } } ]
+info into /Users/lyon/src/monet-node odbc@0.3.0
+info installOne odbc@0.3.0
+info unbuild /Users/lyon/src/monet-node/node_modules/odbc
+verbose from cache /Users/lyon/.npm/odbc/0.3.0/package/package.json
+verbose mkdir (expected) error ENOENT, No such file or directory '/Users/lyon/src/monet-node/node_modules/___odbc.npm'
+verbose mkdir done: /Users/lyon/src/monet-node/node_modules/___odbc.npm 755
+verbose unpack_ uid, gid [ undefined, undefined ]
+verbose unpackTarget /Users/lyon/src/monet-node/node_modules/odbc
+silly gunzTarPerm modes [ '755', '644' ]
+silly tar err x package/build.sh
+silly tar err x package/index.js
+silly tar err x package/LICENSE
+silly tar err x package/odbc.js
+silly tar err x package/package.json
+silly tar err x package/README.md
+silly tar err x package/wscript
+silly tar err x package/odbc_bindings.node
+silly tar err x package/examples/describe.js
+silly tar err x package/examples/params.js
+silly tar err x package/src/Database.cpp
+silly tar err x package/src/Database.h
+silly asyncMap in gTP /Users/lyon/src/monet-node/node_modules/___odbc.npm/package
+silly asyncMap in gTP /Users/lyon/src/monet-node/node_modules/___odbc.npm/package/build.sh
+silly asyncMap in gTP /Users/lyon/src/monet-node/node_modules/___odbc.npm/package/index.js
+silly asyncMap in gTP /Users/lyon/src/monet-node/node_modules/___odbc.npm/package/LICENSE
+silly asyncMap in gTP /Users/lyon/src/monet-node/node_modules/___odbc.npm/package/odbc.js
+silly asyncMap in gTP /Users/lyon/src/monet-node/node_modules/___odbc.npm/package/odbc_bindings.node
+silly asyncMap in gTP /Users/lyon/src/monet-node/node_modules/___odbc.npm/package/package.json
+silly asyncMap in gTP /Users/lyon/src/monet-node/node_modules/___odbc.npm/package/README.md
+silly asyncMap in gTP /Users/lyon/src/monet-node/node_modules/___odbc.npm/package/wscript
+silly asyncMap in gTP /Users/lyon/src/monet-node/node_modules/___odbc.npm/package/examples
+silly asyncMap in gTP /Users/lyon/src/monet-node/node_modules/___odbc.npm/package/examples/describe.js
+silly asyncMap in gTP /Users/lyon/src/monet-node/node_modules/___odbc.npm/package/examples/params.js
+silly asyncMap in gTP /Users/lyon/src/monet-node/node_modules/___odbc.npm/package/src
+silly asyncMap in gTP /Users/lyon/src/monet-node/node_modules/___odbc.npm/package/src/Database.cpp
+silly asyncMap in gTP /Users/lyon/src/monet-node/node_modules/___odbc.npm/package/src/Database.h
+verbose gunzed /Users/lyon/src/monet-node/node_modules/___odbc.npm/package
+verbose rm'ed /Users/lyon/src/monet-node/node_modules/odbc
+verbose renamed [ '/Users/lyon/src/monet-node/node_modules/___odbc.npm/package',
+verbose renamed   '/Users/lyon/src/monet-node/node_modules/odbc' ]
+verbose has wscript [ undefined,
+verbose has wscript   { file: '/Users/lyon/src/monet-node/node_modules/odbc/package.json',
+verbose has wscript     contributors: false,
+verbose has wscript     serverjs: false,
+verbose has wscript     wscript: true } ]
+silly testEngine { name: 'odbc',
+silly testEngine   description: 'unixodbc bindings for node',
+silly testEngine   version: '0.3.0',
+silly testEngine   homepage: 'http://github.com/w1nk/node-odbc/',
+silly testEngine   repository: 
+silly testEngine    { type: 'git',
+silly testEngine      url: 'git://github.com/w1nk/node-odbc.git' },
+silly testEngine   author: { name: 'Lee Smith', email: 'notwink@gmail.com' },
+silly testEngine   directories: { lib: '.' },
+silly testEngine   engines: { node: '*' },
+silly testEngine   scripts: { preinstall: 'node-waf configure build' },
+silly testEngine   _id: 'odbc@0.3.0',
+silly testEngine   dependencies: {},
+silly testEngine   devDependencies: {},
+silly testEngine   _engineSupported: true,
+silly testEngine   _npmVersion: '1.0.93',
+silly testEngine   _nodeVersion: 'v0.4.12',
+silly testEngine   _defaultsLoaded: true }
+verbose caching /Users/lyon/src/monet-node/node_modules/odbc/package.json
+verbose loadDefaults odbc@0.3.0
+info preinstall odbc@0.3.0
+verbose unsafe-perm in lifecycle true
+silly exec sh "-c" "node-waf configure build"
+info odbc@0.3.0 Failed to exec preinstall script
+ERR! error installing odbc@0.3.0 Error: odbc@0.3.0 preinstall: `node-waf configure build`
+ERR! error installing odbc@0.3.0 `sh "-c" "node-waf configure build"` failed with 1
+ERR! error installing odbc@0.3.0     at ChildProcess.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/exec.js:49:20)
+ERR! error installing odbc@0.3.0     at ChildProcess.emit (events.js:67:17)
+ERR! error installing odbc@0.3.0     at ChildProcess.onexit (child_process.js:192:12)
+info unbuild /Users/lyon/src/monet-node/node_modules/odbc
+verbose from cache /Users/lyon/src/monet-node/node_modules/odbc/package.json
+info preuninstall odbc@0.3.0
+info uninstall odbc@0.3.0
+verbose unbuild odbc@0.3.0 [ false,
+verbose unbuild odbc@0.3.0   '/usr/local/lib/node_modules',
+verbose unbuild odbc@0.3.0   '/Users/lyon/src/monet-node/node_modules' ]
+info postuninstall odbc@0.3.0
+verbose installOne cb odbc@0.3.0
+ERR! odbc@0.3.0 preinstall: `node-waf configure build`
+ERR! `sh "-c" "node-waf configure build"` failed with 1
+ERR! 
+ERR! Failed at the odbc@0.3.0 preinstall script.
+ERR! This is most likely a problem with the odbc package,
+ERR! not with npm itself.
+ERR! Tell the author that this fails on your system:
+ERR!     node-waf configure build
+ERR! You can get their info via:
+ERR!     npm owner ls odbc
+ERR! There is likely additional logging output above.
+ERR! 
+ERR! System Darwin 10.8.0
+ERR! command "node" "/usr/local/bin/npm" "install" "odbc"
+ERR! cwd /Users/lyon/src/monet-node
+ERR! node -v v0.4.12
+ERR! npm -v 1.0.93
+ERR! code ELIFECYCLE
+verbose exit [ 1, true ]
