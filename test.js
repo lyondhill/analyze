@@ -378,6 +378,6 @@ setInterval(function() {
 		db.query("INSERT INTO lyon_farts VALUES ('sbd', " + Math.floor(Math.random()*11) + ", " + Math.floor(Math.random()*11) + ");")
 		db.query("INSERT INTO lyon_farts VALUES ('sbd', " + Math.floor(Math.random()*11) + ", " + Math.floor(Math.random()*11) + ");")
 		db.query("INSERT INTO lyon_farts VALUES ('sbd', " + Math.floor(Math.random()*11) + ", " + Math.floor(Math.random()*11) + ");")
-		
+
 	});
-}, 1)
+}, 1000)
