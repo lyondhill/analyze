@@ -36,7 +36,8 @@ module.exports = class ExpressServ
     @db = @db || new odbc.Database()
     @db.open "DRIVER={MonetDB};Server=localhost;Port=50000;UID=monetdb;PWD=monetdb;DATABASE=my-first-db", (err) ->
       @db.query "SELECT sum(severity) as sum FROM lyon_farts", (err, rows, moreResultSets) ->
-        res.send rows[0].user_time = new Date().toTimeString()
+        rows[0].user_time = new Date().toTimeString()
+        res.send rows
 
 
 
