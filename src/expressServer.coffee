@@ -18,7 +18,8 @@ module.exports = class ExpressServ
     curr = this
     @db = @db || new odbc.Database()
     @db.open "DRIVER={MonetDB};Server=localhost;Port=50000;UID=monetdb;PWD=monetdb;DATABASE=my-first-db", (err) ->
-      curr.set_routes()  
+      this = curr
+      @set_routes()  
 
   set_routes: () ->
     @app.get "/", @hello_world
@@ -37,6 +38,7 @@ module.exports = class ExpressServ
       res.send "average: #{rows[0].average}"
   
   sum: (req, res) ->
+    console.log this
     res.send this
     # @db.query "SELECT sum(severity) as sum FROM lyon_farts", (err, rows, moreResultSets) ->
     #   rows[0].user_time = new Date().toTimeString()
