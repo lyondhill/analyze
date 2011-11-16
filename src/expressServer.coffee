@@ -37,9 +37,10 @@ module.exports = class ExpressServ
       res.send "average: #{rows[0].average}"
   
   sum: (req, res) ->
-    @db.query "SELECT sum(severity) as sum FROM lyon_farts", (err, rows, moreResultSets) ->
-      rows[0].user_time = new Date().toTimeString()
-      res.send rows[0]
+    res.send this
+    # @db.query "SELECT sum(severity) as sum FROM lyon_farts", (err, rows, moreResultSets) ->
+    #   rows[0].user_time = new Date().toTimeString()
+    #   res.send rows[0]
 
 
 
