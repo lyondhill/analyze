@@ -62,7 +62,12 @@ db.open("DRIVER={MonetDB};Server=localhost;Port=50000;UID=monetdb;PWD=monetdb;DA
 	db.query("INSERT INTO lyon_farts VALUES ('shard', 3, 10);")
     db.query("SELECT * FROM lyon_farts WHERE severity > 3;", function(err, rows, moreResultSets)
     {
+    	console.log(rows.length)
+    	console.log("--------")
+    	console.log(moreResultSets)
+    	console.log("--------")
         console.log(rows);
+        console.log("--------")
         db.close(function(){});
     });
 });
