@@ -8,7 +8,9 @@ module.exports = class ExpressServ
   constructor: (@host, @port) ->
     @app = require('express').createServer();
     @db = @db || new odbc.Database()
+    console.log this
     @db.open "DRIVER={MonetDB};Server=localhost;Port=50000;UID=monetdb;PWD=monetdb;DATABASE=my-first-db"
+    console.log this
     @set_routes()
     @app.listen(@port, @host)
     # @db.open "DRIVER={MonetDB};Server=localhost;Port=50000;UID=monetdb;PWD=monetdb;DATABASE=my-first-db", (err) ->
