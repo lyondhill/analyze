@@ -22,7 +22,7 @@ setInterval(function() {
     //     console.log("--------")
     //     db.close(function(){});
     // });
-	db.query("SELECT sum(severity) FROM lyon_farts", function(err, rows, moreResultSets)
+	db.query("SELECT sum(severity) as sum, avg(severity) as average FROM lyon_farts", function(err, rows, moreResultSets)
 	{
 		console.log(rows.length)
 		console.log("--------")
