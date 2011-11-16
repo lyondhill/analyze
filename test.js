@@ -6,9 +6,13 @@ console.log(db)
 db.open("DRIVER={MonetDB};Server=localhost;Port=50000;UID=monetdb;PWD=monetdb;DATABASE=my-first-db", function(err)
 {
 
-setInterval(function() {
-	db.query("INSERT INTO lyon_farts VALUES ('sbd', " + Math.floor(Math.random()*11) + ", " + Math.floor(Math.random()*11) + ");")
-}, 1)
+	setInterval(function() {
+		db.open("DRIVER={MonetDB};Server=localhost;Port=50000;UID=monetdb;PWD=monetdb;DATABASE=my-first-db", function(err)
+		{
+
+			db.query("INSERT INTO lyon_farts VALUES ('sbd', " + Math.floor(Math.random()*11) + ", " + Math.floor(Math.random()*11) + ");")
+		});
+	}, 1)
 	// db.query("INSERT INTO lyon_farts VALUES ('sbd', 2, 4);")
 	// db.query("INSERT INTO lyon_farts VALUES ('pop', 1, 7);")
 	// db.query("INSERT INTO lyon_farts VALUES ('shard', 3, 10);")
