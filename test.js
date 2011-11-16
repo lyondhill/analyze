@@ -64,7 +64,7 @@ db.open("DRIVER={MonetDB};Server=localhost;Port=50000;UID=monetdb;PWD=monetdb;DA
     {
     	console.log(rows.length)
     	console.log("--------")
-    	console.log(moreResultSets)
+    	console.log(typeof(moreResultSets))
     	console.log("--------")
         // console.log(rows);
         // console.log("--------")
