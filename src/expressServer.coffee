@@ -1,8 +1,5 @@
-# odbc = require("odbc")
 db = new require("odbc").Database();
-# redis = require 'redis'
-# https = require 'https'
-
+redis = require('redis').createClient # (6379, '127.0.0.1')
 
 module.exports = class ExpressServ
 
@@ -25,19 +22,18 @@ module.exports = class ExpressServ
     res.send "app name = #{req.params.app}"
 
   average: (req, res) ->
-    db = db || new odbc.Database()
-    db.open "DRIVER={MonetDB};Server=localhost;Port=50000;UID=monetdb;PWD=monetdb;DATABASE=my-first-db", (err) ->
-      db.query "SELECT avg(severity) as average FROM lyon_farts", (err, rows, moreResultSets) ->
-        res.send "average: #{rows[0].average}"
+    redis.get "average", (err, response) =>
+      if response
+        res.send "average: #{response} (cached)"
+      else
+        db.query "SELECT avg(severity) as average FROM lyon_farts", (err, rows, moreResultSets) ->
+          res.send "average: #{rows[0].average}"
+          redis.set("average", rows[0].average)
+
   
   sum: (req, res) ->
     db.query "SELECT sum(severity) as sum FROM lyon_farts", (err, rows, moreResultSets) ->
       rows[0].user_time = new Date().toTimeString()
       res.send rows[0]
-
-
-
-
-
 
   
