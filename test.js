@@ -7,7 +7,7 @@ client.on("error", function (err) {
 
 client.set("average", "3")
 
-client.get("hulu", function (err, res) {
+client.get("average", function (err, res) {
     console.log(res)
 })
 
