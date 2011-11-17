@@ -1,5 +1,5 @@
 db = new require("odbc").Database();
-redis = require('redis').createClient # (6379, '127.0.0.1')
+redis = require('redis').createClient() # (6379, '127.0.0.1')
 
 module.exports = class ExpressServ
 
