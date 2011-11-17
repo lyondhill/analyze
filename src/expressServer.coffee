@@ -33,14 +33,20 @@ module.exports = class ExpressServ
       if response
         res.send response
       else
-        # body...
+        @send_data = "not yet implemented"
+        res.send @send_data
+        redis.set("#{req.params.app}-quick_stats_day", @send_data)
+        redis.expire("#{req.params.app}-quick_stats_day", 60)
 
   quick_stats_week: (req, res) ->
     redis.get "#{req.params.app}-quick_stats_week", (err, response) ->
       if response
         res.send response
       else
-        # body...
+        @send_data = "not yet implemented"
+        res.send @send_data
+        redis.set("#{req.params.app}-quick_stats_week", @send_data)
+        redis.expire("#{req.params.app}-quick_stats_week", 60)
 
 
   web_requests: (req, res) ->
@@ -48,7 +54,10 @@ module.exports = class ExpressServ
       if response
         res.send response
       else
-        # body...
+        @send_data = "not yet implemented"
+        res.send @send_data
+        redis.set("#{req.params.app}-web_requests", @send_data)
+        redis.expire("#{req.params.app}-web_requests", 60)
 
 
   response_time: (req, res) ->
@@ -56,7 +65,10 @@ module.exports = class ExpressServ
       if response
         res.send response
       else
-        # body...
+        @send_data = "not yet implemented"
+        res.send @send_data
+        redis.set("#{req.params.app}-response_time", @send_data)
+        redis.expire("#{req.params.app}-response_time", 60)
 
 
   slowest_response: (req, res) ->
@@ -64,7 +76,10 @@ module.exports = class ExpressServ
       if response
         res.send response
       else
-        # body...
+        @send_data = "not yet implemented"
+        res.send @send_data
+        redis.set("#{req.params.app}-slowest_response", @send_data)
+        redis.expire("#{req.params.app}-slowest_response", 60)
 
 
   most_viewed: (req, res) ->
@@ -72,7 +87,10 @@ module.exports = class ExpressServ
       if response
         res.send response
       else
-        # body...
+        @send_data = "not yet implemented"
+        res.send @send_data
+        redis.set("#{req.params.app}-most_viewed", @send_data)
+        redis.expire("#{req.params.app}-most_viewed", 60)
 
 
 
