@@ -25,7 +25,7 @@ module.exports = class ExpressServ
     @app.get "/sum", @sum
 
   quick_stats_hour: (req, res) ->
-    db.query "SELECT COUNT(*) as total FROM webrequest WHERE ai=#{req.params.app}", (err, rows, moreResultSets) ->
+    db.query "SELECT COUNT(*) as total FROM webrequest", (err, rows, moreResultSets) ->
       res.send "total: #{rows[0].total}"#{}\nunique: #{rows[0].unique}\naverage: #{rows[0].average}"
 
   quick_stats_day: (req, res) ->
