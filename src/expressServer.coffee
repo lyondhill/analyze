@@ -47,12 +47,14 @@ module.exports = class ExpressServ
   quick_stats_week: (req, res) ->
     redis.get "#{req.params.app}-quick_stats_week", (err, response) ->
       if response
-        res.send response
+        console.log "cached"
+        res.send JSON.parse(response)
       else
-        @send_data = "not yet implemented"
-        res.send @send_data
-        redis.set("#{req.params.app}-quick_stats_week", @send_data)
-        redis.expire("#{req.params.app}-quick_stats_week", 60)
+        db.query "SELECT count(*) as \"total\", count(distinct pd) as \"unique\", avg(rt) as \"response\" FROM webrequest WHERE ai='#{req.params.app}' and t>'2011-11-01'", (err, result, moreResultSets) ->
+          console.log "query"
+          res.send result
+          redis.set("#{req.params.app}-quick_stats_week", JSON.stringify(result))
+          redis.expire("#{req.params.app}-quick_stats_week", 60)
 
   web_requests: (req, res) ->
     redis.get "#{req.params.app}-web_requests", (err, response) ->
