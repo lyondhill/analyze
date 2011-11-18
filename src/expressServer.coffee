@@ -10,9 +10,9 @@ module.exports = class ExpressServ
     db.open "DRIVER={MonetDB};Server=localhost;Port=50000;UID=monetdb;PWD=monetdb;DATABASE=my-first-db"
 
   set_routes: () ->
-    @app.get "/apps/:app/quick-stats-hour", @quick_stats_hour
     @app.get "/apps/:app/quick-stats-day", @quick_stats_day
     @app.get "/apps/:app/quick-stats-week", @quick_stats_week
+    @app.get "/apps/:app/quick-stats-month", @quick_stats_month
     @app.get "/apps/:app/web-requests", @web_requests
     @app.get "/apps/:app/response-time", @response_time
     @app.get "/apps/:app/slowest-response-time", @slowest_response
