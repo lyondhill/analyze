@@ -25,12 +25,11 @@ module.exports = class ExpressServ
     @app.get "/sum", @sum
 # , count(distinct pd) as \"unique\", avg(rt) as \"response\" FROM webrequest WHERE ai='4eb05aea48afd80192000057';
   quick_stats_hour: (req, res) ->
-    db.query "SELECT count(*) as \"total\", count(distinct pd) as \"unique\", avg(rt) as \"response\" FROM webrequest WHERE ai='#{req.params.app}' and t>'2011-11-17'", (err, rows, moreResultSets) ->
+    db.query "SELECT count(*) as \"total\", count(distinct pd) as \"unique\", avg(rt) as \"response\" FROM webrequest WHERE ai='#{req.params.app}' and t>'2011-11-16'", (err, rows, moreResultSets) ->
       if err
         res.send err
       else
         res.send rows#{}"total: #{rows[0].total}\nunique: #{rows[0].unique}\navg: #{rows[0].response}"
-
 
   quick_stats_day: (req, res) ->
     redis.get "#{req.params.app}-quick_stats_day", (err, response) ->
@@ -59,7 +58,7 @@ module.exports = class ExpressServ
   web_requests: (req, res) ->
     redis.get "#{req.params.app}-web_requests", (err, response) ->
       if response
-        res.send response
+        res.send JSON.parse(response)
       else
         @send_data = "not yet implemented"
         res.send @send_data
