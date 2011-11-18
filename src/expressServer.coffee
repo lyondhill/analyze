@@ -25,8 +25,8 @@ module.exports = class ExpressServ
     @app.get "/sum", @sum
 
   quick_stats_hour: (req, res) ->
-    db.query "SELECT COUNT(*) as total, COUNT(DISTINCT pd) as unique, avg(rt) as average FROM webrequest WHERE ai=#{req.params.app}", (err, rows, moreResultSets) ->
-      res.send "total: #{rows[0].total}\nunique: #{rows[0].unique}\naverage: #{rows[0].average}"
+    db.query "SELECT COUNT(*) as total FROM webrequest WHERE ai=#{req.params.app}", (err, rows, moreResultSets) ->
+      res.send "total: #{rows[0].total}"#{}\nunique: #{rows[0].unique}\naverage: #{rows[0].average}"
 
   quick_stats_day: (req, res) ->
     redis.get "#{req.params.app}-quick_stats_day", (err, response) ->
