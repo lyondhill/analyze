@@ -38,7 +38,7 @@ module.exports = class ExpressServ
         console.log "cached"
         res.send JSON.parse(response)
       else
-        db.query "SELECT count(*) as \"total\", count(distinct pd) as \"unique\", avg(rt) as \"response\" FROM webrequest WHERE ai='#{req.params.app}' and t>'2011-11-17'", (err, result, moreResultSets) ->
+        db.query "SELECT count(*) as \"total\", count(distinct pd) as \"unique\", avg(rt) as \"response\" FROM webrequest WHERE ai='#{req.params.app}' and t>'2011-11-10'", (err, result, moreResultSets) ->
           console.log "query"
           res.send result
           redis.set("#{req.params.app}-quick_stats_day", JSON.stringify(result))
