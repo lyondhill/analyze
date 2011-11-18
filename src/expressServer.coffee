@@ -28,7 +28,8 @@ module.exports = class ExpressServ
     db.query "SELECT count(*) as \"total\", count(distinct pd) as \"unique\", avg(rt) as \"response\" FROM webrequest WHERE ai='4eb05aea48afd80192000057';", (err, rows, moreResultSets) ->
       if err
         res.send err
-      res.send rows#{}"total: #{rows[0].total}\nunique: #{rows[0].unique}\navg: #{rows[0].response}"
+      else
+        res.send rows#{}"total: #{rows[0].total}\nunique: #{rows[0].unique}\navg: #{rows[0].response}"
 
   quick_stats_day: (req, res) ->
     redis.get "#{req.params.app}-quick_stats_day", (err, response) ->
