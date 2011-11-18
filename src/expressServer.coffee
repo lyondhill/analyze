@@ -31,15 +31,16 @@ module.exports = class ExpressServ
       else
         res.send rows#{}"total: #{rows[0].total}\nunique: #{rows[0].unique}\navg: #{rows[0].response}"
 
+
   quick_stats_day: (req, res) ->
-    redis.get "#{req.params.app}-quick_stats_day", (err, response) ->
+    redis.hmget "#{req.params.app}-quick_stats_day", (err, response) ->
       if response
         res.send response
       else
-        @send_data = "not yet implemented"
-        res.send @send_data
-        redis.set("#{req.params.app}-quick_stats_day", @send_data)
-        redis.expire("#{req.params.app}-quick_stats_day", 60)
+        db.query "SELECT count(*) as \"total\", count(distinct pd) as \"unique\", avg(rt) as \"response\" FROM webrequest WHERE ai='#{req.params.app}' and t>'2011-11-17'", (err, result, moreResultSets) ->
+          res.send result
+          redis.hmset("#{req.params.app}-quick_stats_day", result)
+          redis.expire("#{req.params.app}-quick_stats_day", 60)
 
   quick_stats_week: (req, res) ->
     redis.get "#{req.params.app}-quick_stats_week", (err, response) ->
