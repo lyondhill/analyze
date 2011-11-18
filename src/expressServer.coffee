@@ -105,7 +105,7 @@ module.exports = class ExpressServ
       if response
         res.send "average: #{response} (cached)"
       else
-        db.query "SELECT avg(rt) as response FROM lyon_farts", (err, rows, moreResultSets) ->
+        db.query "SELECT avg(rt) as response FROM webrequest", (err, rows, moreResultSets) ->
           res.send "average: #{rows[0].response}"
           redis.set("average", rows[0].response)
           redis.expire("average", 5)
