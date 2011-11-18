@@ -24,14 +24,14 @@ module.exports = class ExpressServ
     @app.get "/average", @average
     @app.get "/sum", @sum
 # , count(distinct pd) as \"unique\", avg(rt) as \"response\" FROM webrequest WHERE ai='4eb05aea48afd80192000057';
-  quick_stats_hour: (req, res) ->
+  quick_stats_day: (req, res) ->
     db.query "SELECT count(*) as \"total\", count(distinct pd) as \"unique\", avg(rt) as \"response\" FROM webrequest WHERE ai='#{req.params.app}' and t>'2011-11-16'", (err, rows, moreResultSets) ->
       if err
         res.send err
       else
         res.send rows#{}"total: #{rows[0].total}\nunique: #{rows[0].unique}\navg: #{rows[0].response}"
 
-  quick_stats_day: (req, res) ->
+  quick_stats_week: (req, res) ->
     redis.get "#{req.params.app}-quick_stats_day", (err, response) ->
       if response
         console.log "cached"
@@ -43,7 +43,7 @@ module.exports = class ExpressServ
           redis.set("#{req.params.app}-quick_stats_day", JSON.stringify(result))
           redis.expire("#{req.params.app}-quick_stats_day", 60)
 
-  quick_stats_week: (req, res) ->
+  quick_stats_month: (req, res) ->
     redis.get "#{req.params.app}-quick_stats_week", (err, response) ->
       if response
         console.log "cached"
