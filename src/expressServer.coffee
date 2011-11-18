@@ -23,9 +23,9 @@ module.exports = class ExpressServ
     @app.get "/apps/:app", @app_name
     @app.get "/average", @average
     @app.get "/sum", @sum
-# , count(distinct pd) as unique, avg(rt) as response
+# , count(distinct pd) as \"unique\", avg(rt) as \"response\" FROM webrequest WHERE ai='4eb05aea48afd80192000057';
   quick_stats_hour: (req, res) ->
-    db.query "SELECT count(*) as \"total\", count(distinct pd) as \"unique\", avg(rt) as \"response\" FROM webrequest WHERE ai='4eb05aea48afd80192000057';", (err, rows, moreResultSets) ->
+    db.query "SELECT count(*) as \"total\" FROM webrequest", (err, rows, moreResultSets) ->
       if err
         res.send err
       else
