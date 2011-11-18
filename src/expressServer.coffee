@@ -25,8 +25,8 @@ module.exports = class ExpressServ
     @app.get "/sum", @sum
 
   quick_stats_hour: (req, res) ->
-    db.query "SELECT avg(severity) as average FROM lyon_farts", (err, rows, moreResultSets) ->
-      res.send "average: #{rows[0].average}"
+    db.query "SELECT COUNT(*) as total, COUNT(DISTINCT pd) as unique, avg(rt) as average FROM webrequest WHERE ai=#{req.params.app}", (err, rows, moreResultSets) ->
+      res.send "total: #{rows[0].total}\nunique: #{rows[0].unique}\naverage: #{rows[0].average}"
 
   quick_stats_day: (req, res) ->
     redis.get "#{req.params.app}-quick_stats_day", (err, response) ->
@@ -48,7 +48,6 @@ module.exports = class ExpressServ
         redis.set("#{req.params.app}-quick_stats_week", @send_data)
         redis.expire("#{req.params.app}-quick_stats_week", 60)
 
-
   web_requests: (req, res) ->
     redis.get "#{req.params.app}-web_requests", (err, response) ->
       if response
@@ -58,7 +57,6 @@ module.exports = class ExpressServ
         res.send @send_data
         redis.set("#{req.params.app}-web_requests", @send_data)
         redis.expire("#{req.params.app}-web_requests", 60)
-
 
   response_time: (req, res) ->
     redis.get "#{req.params.app}-response_time", (err, response) ->
@@ -70,7 +68,6 @@ module.exports = class ExpressServ
         redis.set("#{req.params.app}-response_time", @send_data)
         redis.expire("#{req.params.app}-response_time", 60)
 
-
   slowest_response: (req, res) ->
     redis.get "#{req.params.app}-slowest_response", (err, response) ->
       if response
@@ -81,7 +78,6 @@ module.exports = class ExpressServ
         redis.set("#{req.params.app}-slowest_response", @send_data)
         redis.expire("#{req.params.app}-slowest_response", 60)
 
-
   most_viewed: (req, res) ->
     redis.get "#{req.params.app}-most_viewed", (err, response) ->
       if response
@@ -91,8 +87,6 @@ module.exports = class ExpressServ
         res.send @send_data
         redis.set("#{req.params.app}-most_viewed", @send_data)
         redis.expire("#{req.params.app}-most_viewed", 60)
-
-
 
   hello_world: (req, res) ->
     res.send "hello BIG world"
@@ -109,7 +103,6 @@ module.exports = class ExpressServ
           res.send "average: #{rows[0].response}"
           redis.set("average", rows[0].response)
           redis.expire("average", 5)
-
   
   sum: (req, res) ->
     db.query "SELECT sum(severity) as sum FROM lyon_farts", (err, rows, moreResultSets) ->
