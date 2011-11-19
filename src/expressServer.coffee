@@ -86,7 +86,7 @@ module.exports = class ExpressServ
       if response
         res.send response
       else
-        db.query "SELECT pages.pt as \"pt\", (pages.count * 100.0) / (total.count * 1.0) as \"percent\" FROM (SELECT pt, count(*) as \"count\" FROM webrequest WHERE ai='#{req.params.app}' and t>CURRENT_TIMESTAMP - INTERVAL '10' DAY GROUP BY \"pt\") pages, (SELECT COUNT(*) as count FROM webrequest WHERE ai='#{req.params.app}' AND t>CURRENT_TIMESTAMP - INTERVAL '10' DAY) total ORDER BY \"percent\" DESC LIMIT 20;", (err, result, moreResultSets) ->
+        db.query "SELECT pages.pt as \"pt\", (pages.count * 100.0) / (total.count * 1.0) as \"percent\" FROM (SELECT pt, count(*) as \"count\" FROM webrequest WHERE ai='4eb05aea48afd80192000057' and t>CURRENT_TIMESTAMP - INTERVAL '10' DAY GROUP BY \"pt\") pages, (SELECT COUNT(*) as count FROM webrequest WHERE ai='4eb05aea48afd80192000057' AND t>CURRENT_TIMESTAMP - INTERVAL '10' DAY) total ORDER BY \"percent\" DESC LIMIT 20;", (err, result, moreResultSets) ->
             res.send result
             redis.set("#{req.params.app}-most_viewed", JSON.stringify(result))
             redis.expire("#{req.params.app}-most_viewed", 3600)
