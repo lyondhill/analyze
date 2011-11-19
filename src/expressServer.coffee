@@ -29,7 +29,7 @@ module.exports = class ExpressServ
       if err
         res.send err
       else
-        res.send rows#{}"total: #{rows[0].total}\nunique: #{rows[0].unique}\navg: #{rows[0].response}"
+        res.send rows #{}"total: #{rows[0].total}\nunique: #{rows[0].unique}\navg: #{rows[0].response}"
 
   quick_stats_week: (req, res) ->
     redis.get "#{req.params.app}-quick_stats_day", (err, response) ->
@@ -60,10 +60,10 @@ module.exports = class ExpressServ
       if response
         res.send JSON.parse(response)
       else
-        @send_data = "not yet implemented"
-        res.send @send_data
-        redis.set("#{req.params.app}-web_requests", @send_data)
-        redis.expire("#{req.params.app}-web_requests", 60)
+        db.query "SELECT count(*) as \"total\", avg(rt) as \"response\", EXTRACT(hour from t) as \"hour\" FROM webrequest WHERE ai='4eb05aea48afd80192000057' and t>'2011-11-01' GROUP BY \"hour\" ORDER BY \"hour\"", (err, result, moreResultSets) ->
+          res.send result
+          redis.set("#{req.params.app}-web_requests", JSON.stringify(result))
+          redis.expire("#{req.params.app}-web_requests", 60)
 
   response_time: (req, res) ->
     redis.get "#{req.params.app}-response_time", (err, response) ->
@@ -80,20 +80,20 @@ module.exports = class ExpressServ
       if response
         res.send response
       else
-        @send_data = "not yet implemented"
-        res.send @send_data
-        redis.set("#{req.params.app}-slowest_response", @send_data)
-        redis.expire("#{req.params.app}-slowest_response", 60)
+        db.query "SELECT pt, avg(rt) as \"response\" FROM webrequest WHERE ai='4eb05aea48afd80192000057' and t>'2011-11-01' GROUP BY \"pt\" ORDER BY \"response\" DESC LIMIT 20", (err, result, moreResultSets) ->
+          res.send result
+          redis.set("#{req.params.app}-slowest_response", JSON.stringify(result))
+          redis.expire("#{req.params.app}-slowest_response", 60)
 
   most_viewed: (req, res) ->
     redis.get "#{req.params.app}-most_viewed", (err, response) ->
       if response
         res.send response
       else
-        @send_data = "not yet implemented"
-        res.send @send_data
-        redis.set("#{req.params.app}-most_viewed", @send_data)
-        redis.expire("#{req.params.app}-most_viewed", 60)
+        db.query "SELECT pt, count(*) as \"count\" FROM webrequest WHERE ai='4eb05aea48afd80192000057' and t>'2011-11-01' GROUP BY \"pt\" ORDER BY \"count\" DESC LIMIT 20", (err, result, moreResultSets) ->
+          res.send result
+          redis.set("#{req.params.app}-most_viewed", JSON.stringify(result))
+          redis.expire("#{req.params.app}-most_viewed", 60)
 
   hello_world: (req, res) ->
     res.send "hello BIG world"
