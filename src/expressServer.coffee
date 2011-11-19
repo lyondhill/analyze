@@ -76,7 +76,7 @@ module.exports = class ExpressServ
       if response
         res.send JSON.parse(response)
       else
-        db.query "SELECT pt, avg(rt) as \"response\" FROM webrequest WHERE ai='#{req.params.app}' and t>CURRENT_TIMESTAMP - INTERVAL '10' DAY GROUP BY \"pt\" ORDER BY \"response\" DESC LIMIT 20", (err, result, moreResultSets) ->
+        db.query "SELECT pt, avg(rt) as \"response\" FROM webrequest WHERE ai='#{req.params.app}' and t>CURRENT_TIMESTAMP - INTERVAL '1' DAY GROUP BY \"pt\" ORDER BY \"response\" DESC LIMIT 20", (err, result, moreResultSets) ->
           res.send result
           redis.set("#{req.params.app}-slowest_response", JSON.stringify(result))
           redis.expire("#{req.params.app}-slowest_response", 3600)
