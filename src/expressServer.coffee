@@ -18,14 +18,9 @@ module.exports = class ExpressServ
     @app.get "/apps/:app/slowest-response-time", @slowest_response
     @app.get "/apps/:app/most-viewed", @most_viewed
 
-# testing stuff
-    @app.get "/", @hello_world
-    @app.get "/apps/:app", @app_name
-    @app.get "/average", @average
-    @app.get "/sum", @sum
 # , count(distinct pd) as \"unique\", avg(rt) as \"response\" FROM webrequest WHERE ai='4eb05aea48afd80192000057';
   quick_stats_day: (req, res) ->
-    db.query "SELECT count(*) as \"total\", count(distinct pd) as \"unique\", avg(rt) as \"response\" FROM webrequest WHERE ai='#{req.params.app}' and t>'2011-11-16'", (err, rows, moreResultSets) ->
+    db.query "SELECT count(*) as \"total\", count(distinct pd) as \"unique\", avg(rt) as \"response\" FROM webrequest WHERE ai='#{req.params.app}' and t>CURRENT_TIMESTAMP - INTERVAL '1' DAY", (err, rows, moreResultSets) ->
       if err
         res.send err
       else
@@ -37,11 +32,11 @@ module.exports = class ExpressServ
         console.log "cached"
         res.send JSON.parse(response)
       else
-        db.query "SELECT count(*) as \"total\", count(distinct pd) as \"unique\", avg(rt) as \"response\" FROM webrequest WHERE ai='#{req.params.app}' and t>'2011-11-10'", (err, result, moreResultSets) ->
+        db.query "SELECT count(*) as \"total\", count(distinct pd) as \"unique\", avg(rt) as \"response\" FROM webrequest WHERE ai='#{req.params.app}' and t>CURRENT_TIMESTAMP - INTERVAL '7' DAY", (err, result, moreResultSets) ->
           console.log "query"
           res.send result
           redis.set("#{req.params.app}-quick_stats_day", JSON.stringify(result))
-          redis.expire("#{req.params.app}-quick_stats_day", 60)
+          redis.expire("#{req.params.app}-quick_stats_day", 3600)
 
   quick_stats_month: (req, res) ->
     redis.get "#{req.params.app}-quick_stats_week", (err, response) ->
@@ -49,71 +44,52 @@ module.exports = class ExpressServ
         console.log "cached"
         res.send JSON.parse(response)
       else
-        db.query "SELECT count(*) as \"total\", count(distinct pd) as \"unique\", avg(rt) as \"response\" FROM webrequest WHERE ai='#{req.params.app}' and t>'2011-11-01'", (err, result, moreResultSets) ->
+        db.query "SELECT count(*) as \"total\", count(distinct pd) as \"unique\", avg(rt) as \"response\" FROM webrequest WHERE ai='#{req.params.app}' and t>CURRENT_TIMESTAMP - INTERVAL '30' DAY", (err, result, moreResultSets) ->
           console.log "query"
           res.send result
           redis.set("#{req.params.app}-quick_stats_week", JSON.stringify(result))
-          redis.expire("#{req.params.app}-quick_stats_week", 60)
+          redis.expire("#{req.params.app}-quick_stats_week", 86400)
 
   web_requests: (req, res) ->
     redis.get "#{req.params.app}-web_requests", (err, response) ->
       if response
         res.send JSON.parse(response)
       else
-        db.query "SELECT count(*) as \"total\", avg(rt) as \"response\", EXTRACT(hour from t) as \"hour\" FROM webrequest WHERE ai='4eb05aea48afd80192000057' and t>'2011-11-01' GROUP BY \"hour\" ORDER BY \"hour\"", (err, result, moreResultSets) ->
+        db.query "SELECT count(*) as \"total\", avg(rt) as \"average\", EXTRACT(hour from t) as \"hour\" FROM webrequest WHERE ai='#{req.params.app}' and t>CURRENT_TIMESTAMP - INTERVAL '1' DAY GROUP BY \"hour\" ORDER BY \"hour\"", (err, result, moreResultSets) ->
           res.send result
           redis.set("#{req.params.app}-web_requests", JSON.stringify(result))
-          redis.expire("#{req.params.app}-web_requests", 60)
+          redis.expire("#{req.params.app}-web_requests", 300)
 
   response_time: (req, res) ->
     redis.get "#{req.params.app}-response_time", (err, response) ->
       if response
-        res.send response
+        res.send JSON.parse(response)
       else
-        @send_data = "not yet implemented"
-        res.send @send_data
-        redis.set("#{req.params.app}-response_time", @send_data)
-        redis.expire("#{req.params.app}-response_time", 60)
+        db.query "", (err, result, moreResultSets) ->
+        res.send result
+        redis.set("#{req.params.app}-response_time", JSON.stringify(result))
+        redis.expire("#{req.params.app}-response_time", 3600)
 
   slowest_response: (req, res) ->
     redis.get "#{req.params.app}-slowest_response", (err, response) ->
       if response
-        res.send response
+        res.send JSON.parse(response)
       else
-        db.query "SELECT pt, avg(rt) as \"response\" FROM webrequest WHERE ai='4eb05aea48afd80192000057' and t>'2011-11-01' GROUP BY \"pt\" ORDER BY \"response\" DESC LIMIT 20", (err, result, moreResultSets) ->
+        db.query "SELECT pt, avg(rt) as \"response\" FROM webrequest WHERE ai='#{req.params.app}' and t>CURRENT_TIMESTAMP - INTERVAL '1' DAY GROUP BY \"pt\" ORDER BY \"response\" DESC LIMIT 20", (err, result, moreResultSets) ->
           res.send result
           redis.set("#{req.params.app}-slowest_response", JSON.stringify(result))
-          redis.expire("#{req.params.app}-slowest_response", 60)
+          redis.expire("#{req.params.app}-slowest_response", 3600)
 
   most_viewed: (req, res) ->
     redis.get "#{req.params.app}-most_viewed", (err, response) ->
       if response
         res.send response
       else
-        db.query "SELECT pt, count(*) as \"count\" FROM webrequest WHERE ai='4eb05aea48afd80192000057' and t>'2011-11-01' GROUP BY \"pt\" ORDER BY \"count\" DESC LIMIT 20", (err, result, moreResultSets) ->
+        db.query "SELECT pt, count(*) as \"count\" FROM webrequest WHERE ai='#{req.params.app}' and t>CURRENT_TIMESTAMP - INTERVAL '1' DAY GROUP BY \"pt\" ORDER BY \"count\" DESC LIMIT 20", (err, result, moreResultSets) ->
           res.send result
           redis.set("#{req.params.app}-most_viewed", JSON.stringify(result))
-          redis.expire("#{req.params.app}-most_viewed", 60)
+          redis.expire("#{req.params.app}-most_viewed", 3600)
 
   hello_world: (req, res) ->
     res.send "hello BIG world"
 
-  app_name: (req, res) ->
-    res.send "app name = #{req.params.app}"
-
-  average: (req, res) ->
-    redis.get "average", (err, response) =>
-      if response
-        res.send "average: #{response} (cached)"
-      else
-        db.query "SELECT avg(rt) as response FROM webrequest", (err, rows, moreResultSets) ->
-          res.send "average: #{rows[0].response}"
-          redis.set("average", rows[0].response)
-          redis.expire("average", 5)
-  
-  sum: (req, res) ->
-    db.query "SELECT sum(severity) as sum FROM lyon_farts", (err, rows, moreResultSets) ->
-      rows[0].user_time = new Date().toTimeString()
-      res.send rows[0]
-
-  
