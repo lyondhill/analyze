@@ -12,7 +12,12 @@
   },
   "main": "./lib/pubsub.js",
   "dependencies": {
-    
+    "daemon": "0.4.0",
+    "express": "2.5.0",
+    "odbc": "0.3.0",
+    "optimist": "0.2.8",
+    "redis": "0.7.1",
+    "wordwrap": "0.0.2"
   },
   "devDependencies": {
     "nodeunit": ">= 0.5.0"
