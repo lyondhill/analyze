@@ -17,6 +17,7 @@ module.exports = class ExpressServ
     @app.get "/apps/:app/response-time", @response_time
     @app.get "/apps/:app/slowest-response-time", @slowest_response
     @app.get "/apps/:app/most-viewed", @most_viewed
+    @app.get "/", @hello_world
 
 # , count(distinct pd) as \"unique\", avg(rt) as \"response\" FROM webrequest WHERE ai='4eb05aea48afd80192000057';
   quick_stats_day: (req, res) ->
