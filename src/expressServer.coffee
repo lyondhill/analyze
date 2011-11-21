@@ -19,22 +19,19 @@ module.exports = class ExpressServ
     @app.get "/apps/:app/most-viewed", @most_viewed
     @app.get "/", @hello_world
 
-# , count(distinct pd) as \"unique\", avg(rt) as \"response\" FROM webrequest WHERE ai='4eb05aea48afd80192000057';
   quick_stats_day: (req, res) ->
-    db.query "SELECT count(*) as \"total\", count(distinct pd) as \"unique\", avg(rt) as \"response\" FROM webrequest WHERE ai='#{req.params.app}' and t>CURRENT_TIMESTAMP - INTERVAL '1' DAY", (err, rows, moreResultSets) ->
+    db.query "SELECT count(*) as \"total\", count(distinct pd) as \"unique\", avg(rt) as \"response\" FROM webrequest WHERE ai='#{req.params.app}' and t>CURRENT_TIMESTAMP - INTERVAL '1' DAY", (err, result, moreResultSets) ->
       if err
         res.send err
       else
-        res.send rows #{}"total: #{rows[0].total}\nunique: #{rows[0].unique}\navg: #{rows[0].response}"
+        res.send result 
 
   quick_stats_week: (req, res) ->
     redis.get "#{req.params.app}-quick_stats_day", (err, response) ->
       if response
-        console.log "cached"
         res.send JSON.parse(response)
       else
         db.query "SELECT count(*) as \"total\", count(distinct pd) as \"unique\", avg(rt) as \"response\" FROM webrequest WHERE ai='#{req.params.app}' and t>CURRENT_TIMESTAMP - INTERVAL '7' DAY", (err, result, moreResultSets) ->
-          console.log "query"
           res.send result
           redis.set("#{req.params.app}-quick_stats_day", JSON.stringify(result))
           redis.expire("#{req.params.app}-quick_stats_day", 3600)
@@ -42,11 +39,9 @@ module.exports = class ExpressServ
   quick_stats_month: (req, res) ->
     redis.get "#{req.params.app}-quick_stats_week", (err, response) ->
       if response
-        console.log "cached"
         res.send JSON.parse(response)
       else
         db.query "SELECT count(*) as \"total\", count(distinct pd) as \"unique\", avg(rt) as \"response\" FROM webrequest WHERE ai='#{req.params.app}' and t>CURRENT_TIMESTAMP - INTERVAL '30' DAY", (err, result, moreResultSets) ->
-          console.log "query"
           res.send result
           redis.set("#{req.params.app}-quick_stats_week", JSON.stringify(result))
           redis.expire("#{req.params.app}-quick_stats_week", 86400)
@@ -68,8 +63,8 @@ module.exports = class ExpressServ
       else
         db.query "SELECT (quarter.count * 100.0) / (total.count * 1.0) as quarter, (half.count * 100.0) / (total.count * 1.0) as half, (one.count * 100.0) / (total.count * 1.0) as one, ((quarter.count + half.count + one.count) * 100.0) / (total.count * 1.0) as full_second, (two.count * 100.0) / (total.count * 1.0) as two, (three.count * 100.0) / (total.count * 1.0) as three, (four.count * 100.0) / (total.count * 1.0) as four, (more.count * 100.0) / (total.count * 1.0) as more FROM (SELECT COUNT(*) as count FROM webrequest WHERE ai='#{req.params.app}' AND t>CURRENT_TIMESTAMP - INTERVAL '1' DAY AND rt <= 250000) quarter, (SELECT COUNT(*) as count FROM webrequest WHERE ai='#{req.params.app}' AND t>CURRENT_TIMESTAMP - INTERVAL '1' DAY AND rt <= 500000  AND rt > 250000) half, (SELECT COUNT(*) as count FROM webrequest WHERE ai='#{req.params.app}' AND t>CURRENT_TIMESTAMP - INTERVAL '1' DAY AND rt <= 1000000 AND rt > 500000) one, (SELECT COUNT(*) as count FROM webrequest WHERE ai='#{req.params.app}' AND t>CURRENT_TIMESTAMP - INTERVAL '1' DAY AND rt <= 2000000 AND rt > 1000000) two, (SELECT COUNT(*) as count FROM webrequest WHERE ai='#{req.params.app}' AND t>CURRENT_TIMESTAMP - INTERVAL '1' DAY AND rt <= 3000000 AND rt > 2000000) three, (SELECT COUNT(*) as count FROM webrequest WHERE ai='#{req.params.app}' AND t>CURRENT_TIMESTAMP - INTERVAL '1' DAY AND rt <= 4000000 AND rt > 3000000) four, (SELECT COUNT(*) as count FROM webrequest WHERE ai='#{req.params.app}' AND t>CURRENT_TIMESTAMP - INTERVAL '1' DAY AND rt >  4000000) more, (SELECT CASE COUNT(*) WHEN 0 THEN 1 ELSE COUNT(*) END as count FROM webrequest WHERE ai='#{req.params.app}' AND t>CURRENT_TIMESTAMP - INTERVAL '1' DAY) total", (err, result, moreResultSets) ->
             res.send result
-            # redis.set("#{req.params.app}-response_time", JSON.stringify(result))
-            # redis.expire("#{req.params.app}-response_time", 3600)
+            redis.set("#{req.params.app}-response_time", JSON.stringify(result))
+            redis.expire("#{req.params.app}-response_time", 3600)
 
   slowest_response: (req, res) ->
     redis.get "#{req.params.app}-slowest_response", (err, response) ->
