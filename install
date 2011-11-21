@@ -1,0 +1,3 @@
+#!/bin/bash
+npm install . -g
+cp init/snorkel.conf /etc/init
