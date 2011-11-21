@@ -27,24 +27,24 @@ module.exports = class ExpressServ
         res.send result 
 
   quick_stats_week: (req, res) ->
-    redis.get "#{req.params.app}-quick_stats_day", (err, response) ->
+    redis.get "#{req.params.app}-quick_stats_week", (err, response) ->
       if response
         res.send JSON.parse(response)
       else
         db.query "SELECT count(*) as \"total\", count(distinct pd) as \"unique\", avg(rt) as \"response\" FROM webrequest WHERE ai='#{req.params.app}' and t>CURRENT_TIMESTAMP - INTERVAL '7' DAY", (err, result, moreResultSets) ->
           res.send result
-          redis.set("#{req.params.app}-quick_stats_day", JSON.stringify(result))
-          redis.expire("#{req.params.app}-quick_stats_day", 3600)
+          redis.set("#{req.params.app}-quick_stats_week", JSON.stringify(result))
+          redis.expire("#{req.params.app}-quick_stats_week", 3600)
 
   quick_stats_month: (req, res) ->
-    redis.get "#{req.params.app}-quick_stats_week", (err, response) ->
+    redis.get "#{req.params.app}-quick_stats_month", (err, response) ->
       if response
         res.send JSON.parse(response)
       else
         db.query "SELECT count(*) as \"total\", count(distinct pd) as \"unique\", avg(rt) as \"response\" FROM webrequest WHERE ai='#{req.params.app}' and t>CURRENT_TIMESTAMP - INTERVAL '30' DAY", (err, result, moreResultSets) ->
           res.send result
-          redis.set("#{req.params.app}-quick_stats_week", JSON.stringify(result))
-          redis.expire("#{req.params.app}-quick_stats_week", 86400)
+          redis.set("#{req.params.app}-quick_stats_month", JSON.stringify(result))
+          redis.expire("#{req.params.app}-quick_stats_month", 86400)
 
   web_requests: (req, res) ->
     redis.get "#{req.params.app}-web_requests", (err, response) ->
