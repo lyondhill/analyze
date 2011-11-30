@@ -8,7 +8,7 @@
     "url": "git@github.com:lyondhill/monetDB-node-client.git"
   },
   "engines": {
-    "node": "0.4"
+    "node": "0.6.2"
   },
   "main": "./lib/pubsub.js",
   "dependencies": {
