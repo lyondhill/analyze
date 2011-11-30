@@ -1,5 +1,5 @@
 db = new require("odbc").Database();
-redis = require('redis').createClient() # (6379, '127.0.0.1')
+redis = require('redis').createClient(6379, '10.60.38.98')
 
 module.exports = class ExpressServ
 
@@ -7,7 +7,7 @@ module.exports = class ExpressServ
     @app = require('express').createServer();
     @set_routes()
     @app.listen(@port, @host)
-    db.open "DRIVER={MonetDB};Server=localhost;Port=50000;UID=monetdb;PWD=monetdb;DATABASE=my-first-db"
+    db.open "DRIVER={MonetDB};Server=10.60.38.97;Port=50000;UID=monetdb;PWD=monetdb;DATABASE=my-first-db"
 
   set_routes: () ->
     @app.get "/apps/:app/quick-stats-day", @quick_stats_day
