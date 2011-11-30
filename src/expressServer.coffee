@@ -7,7 +7,7 @@ module.exports = class ExpressServ
     @app = require('express').createServer();
     @set_routes()
     @app.listen(@port, @host)
-    db.open "DRIVER={MonetDB};Server=10.60.38.97;Port=50000;UID=bakerd;PWD=!rLXoM@y)yr2;DATABASE=pagoda_stats"
+    db.open "DRIVER={MonetDB};Server=10.60.38.97;Port=50000;UID=bakerd;PWD=!rLXoM@y)yr2;DATABASE=web_requests"
 
   set_routes: () ->
     @app.get "/apps/:app/quick-stats-day", @quick_stats_day
