@@ -20,8 +20,9 @@ module.exports = class ExpressServ
     @app.get "/", @hello_world
 
   quick_stats_day: (req, res) ->
-    db.query "SELECT count(*) as \"total\", count(distinct pd) as \"unique\", avg(rt) / 1000 as \"response\" FROM webrequest WHERE ai='#{req.params.app}' and t>CURRENT_TIMESTAMP - INTERVAL '1' DAY", (err, result, moreResultSets) ->
+    db.query "SELECT count(*) as \"total\", count(distinct pd) as \"unique\", avg(rt) as \"response\" FROM webrequest WHERE ai='#{req.params.app}' and t>CURRENT_TIMESTAMP - INTERVAL '1' DAY", (err, result, moreResultSets) ->
       console.log(err) if err
+      result[0]['response'] = "#{(eval(result[0]['response'])/1000).toFixed()} ms"
       res.send data: result, description: "Last 24 Hours"
 
   quick_stats_week: (req, res) ->
@@ -29,8 +30,9 @@ module.exports = class ExpressServ
       if response
         res.send JSON.parse(response)
       else
-        db.query "SELECT count(*) as \"total\", count(distinct pd) as \"unique\", avg(rt) / 1000 as \"response\" FROM webrequest WHERE ai='#{req.params.app}' and t>CURRENT_TIMESTAMP - INTERVAL '7' DAY", (err, result, moreResultSets) ->
+        db.query "SELECT count(*) as \"total\", count(distinct pd) as \"unique\", avg(rt) as \"response\" FROM webrequest WHERE ai='#{req.params.app}' and t>CURRENT_TIMESTAMP - INTERVAL '7' DAY", (err, result, moreResultSets) ->
           console.log(err) if err
+          result[0]['response'] = "#{(eval(result[0]['response'])/1000).toFixed()} ms"
           data = data: result, description: "Last 7 Days"
           res.send data
           redis.set("#{req.params.app}-quick_stats_week", JSON.stringify(data))
@@ -41,8 +43,9 @@ module.exports = class ExpressServ
       if response
         res.send JSON.parse(response)
       else
-        db.query "SELECT count(*) as \"total\", count(distinct pd) as \"unique\", avg(rt) / 1000 as \"response\" FROM webrequest WHERE ai='#{req.params.app}' and t>CURRENT_TIMESTAMP - INTERVAL '30' DAY", (err, result, moreResultSets) ->
+        db.query "SELECT count(*) as \"total\", count(distinct pd) as \"unique\", avg(rt) as \"response\" FROM webrequest WHERE ai='#{req.params.app}' and t>CURRENT_TIMESTAMP - INTERVAL '30' DAY", (err, result, moreResultSets) ->
           console.log(err) if err
+          result[0]['response'] = "#{(eval(result[0]['response'])/1000).toFixed()} ms"
           data = data: result, description: "Last 30 Days"
           res.send data
           redis.set("#{req.params.app}-quick_stats_month", JSON.stringify(data))
